@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title><%= htmlWebpackPlugin.options.title %></title><% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+    <% } %>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=EY8wLqwM0ckGQKyVm7pxWPR2v3VoH3Zm"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css"/>
+    <script type="text/javascript" src="js/blink/adapter.js"></script>
+    <script type="text/javascript" src="js/blink/blinkEngine.js?v=20171101"></script>
+    <script src="http://cdn.ronghub.com/RongIMLib-2.3.1.min.js"></script>
+
+    <script type="text/javascript" src="js/config.js"></script>
+
+    <script type="text/javascript" charset="UTF-8">
+        document.onkeydown = function (event) {
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+
+            if (e.shiftKey && e.altKey && e.keyCode == 68) {
+                document.debug = !document.debug;
+
+                document.log('debug', document.debug, e);
+            }
+        }
+
+        document.log = function () {
+            if (!document.debug) {
+                var args = [];
+                for (var i = 0; i < arguments.length; i++) {
+                    args.push(arguments[i]);
+                }
+                console.log(args);
+            }
+        }
+
+
+
+        function getTime() {
+            var date = new Date();
+            var hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            var minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date
+                .getMinutes();
+            var second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date
+                .getSeconds();
+            return hour + ":" + minute + ":" + second;
+        }
+    </script>
+    <style>
+        .ant-modal-body{
+            padding: 0px;
+        }
+    </style>
+</head>
+<body style="height:100%">
+<div id="root" style="display:flex; position: absolute;left:0;top:0;right:0;bottom:0;">
+
+</div>
+<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+<% } %>
+</body>
+</html>

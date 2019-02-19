@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+
+    <style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+
+        button{
+            margin:6px;
+            padding:4px 8px;
+        }
+    </style>
+
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=EY8wLqwM0ckGQKyVm7pxWPR2v3VoH3Zm"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+
+</head>
+<body>
+<div id="allmap"></div>
+<div style="position: absolute;left:8px; top:8px">
+    <button onclick="drawCircle()">CIRCLE</button>
+    <button onclick="drawRectangle()">RECTANGLE</button>
+    <button onclick="drawPolyline()">POLYLINE</button>
+    <button onclick="drawPolygon()">POLYGON</button>
+    <button onclick="drawMarker()">MARKER</button>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");    // 创建Map实例
+    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
+
+    map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+    map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+    var overlays = [];
+    var overlaycomplete = function(e){
+        overlays.push(e.overlay);
+
+        // Ml：左上角，vl：右下角
+        console.log('complete', e.overlay.Nu);
+
+        drawingManager.close();
+
+    };
+    var styleOptions = {
+        strokeColor:"red",    //边线颜色。
+        fillColor:"red",      //填充颜色。当参数为空时，圆形将没有填充效果。
+        strokeWeight: 2,       //边线的宽度，以像素为单位。
+        strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+        fillOpacity: 0.3,      //填充的透明度，取值范围0 - 1。
+        strokeStyle: 'solid' //边线的样式，solid或dashed。
+    }
+    //实例化鼠标绘制工具
+    var drawingManager = new BMapLib.DrawingManager(map, {
+        isOpen: false, //是否开启绘制模式
+        enableDrawingTool: false, //是否显示工具栏
+        drawingToolOptions: {
+            anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+            offset: new BMap.Size(5, 5), //偏离值
+            drawingTypes : [
+                BMAP_DRAWING_MARKER,
+                BMAP_DRAWING_CIRCLE,
+                BMAP_DRAWING_POLYLINE,
+                BMAP_DRAWING_POLYGON,
+                BMAP_DRAWING_RECTANGLE
+            ]
+        },
+        circleOptions: styleOptions, //圆的样式
+        polylineOptions: styleOptions, //线的样式
+        polygonOptions: styleOptions, //多边形的样式
+        rectangleOptions: styleOptions //矩形的样式
+    });
+    //添加鼠标绘制工具监听事件，用于获取绘制结果
+    drawingManager.addEventListener('overlaycomplete', overlaycomplete);
+    function clearAll() {
+        for(var i = 0; i < overlays.length; i++){
+            map.removeOverlay(overlays[i]);
+        }
+        overlays.length = 0
+    }
+
+    // 创建小狐狸
+    var pt = new BMap.Point(116.417, 39.909);
+    var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/fox.gif", new BMap.Size(300,157));
+    var marker2 = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
+    marker2.persion = 'panying';
+    map.addOverlay(marker2);              // 将标注添加到地图中
+
+    marker2.addEventListener("click", function(){
+        alert("您点击了标注:" + this.persion);
+    });
+
+    function drawCircle(){
+        drawingManager.open();
+        drawingManager.setDrawingMode(BMAP_DRAWING_CIRCLE);
+    }
+    function drawRectangle(){
+        drawingManager.open();
+        drawingManager.setDrawingMode(BMAP_DRAWING_RECTANGLE);
+    }
+    function drawPolyline(){
+        drawingManager.open();
+        drawingManager.setDrawingMode(BMAP_DRAWING_POLYLINE);
+    }
+    function drawPolygon(){
+        drawingManager.open();
+        drawingManager.setDrawingMode(BMAP_DRAWING_POLYGON);
+    }
+    function drawMarker(){
+        drawingManager.open();
+        drawingManager.setDrawingMode(BMAP_DRAWING_MARKER);
+    }
+
+
+</script>

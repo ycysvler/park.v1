@@ -1,0 +1,51 @@
+.wellcome{
+  background:#37353E;
+  .bshadow{box-shadow: 0 1px 0 #555161;display: flex;border-bottom: solid 1px #000;}
+  .rshadow{box-shadow: 1px 0 0 #555161;display: flex;border-right: solid 1px #000;}
+  .lshadow{box-shadow: 0 0 1px #555161;display: flex;border-left: solid 1px #000;}
+
+  .top{
+    height: 150px;
+    text-align:center;
+    border-bottom: solid 1px #000;
+    box-shadow: 0 1px 0 #555161;
+
+    h1{ color:#fff; margin-top: 24px;margin-bottom: 32px;}
+    .link{color:#999999;margin:0 16px;font-size: 18px;}
+    .daytime{position:absolute; left:42px;top:22px; width:100px;height:100px;}
+  }
+  .content{
+    height: 450px;
+    border-bottom: solid 1px #000;
+    box-shadow: 0 1px 0 #555161;
+    display: flex;
+    justify-content:space-around;
+    align-items:stretch;
+
+    .laycolumn{
+      width:300px;
+      display: flex;
+      flex-direction:column;
+      justify-content:space-around;
+
+      div{
+        flex-grow:1;
+
+      }
+    }
+  }
+  .bottom{
+    text-align: center;
+    padding-top: 12px;
+    a{
+      margin:8px;
+      color:#4A4A4A;
+    }
+    a:active{
+      color:#fff;
+    }
+  }
+}
+.BMap_cpyCtrl, .anchorBL{
+  display: none !important;
+}

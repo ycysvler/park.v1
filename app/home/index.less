@@ -1,0 +1,214 @@
+.home {
+  position: relative;
+
+  .marker {
+    position: relative;
+    display: flex;
+    height: 33px;
+    flex-direction: column;
+    transform: translate(-50%, -46px);
+    align-items: center;
+
+    .img {
+      justify-content: center;
+      height: 46px;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .label {
+      display: block;
+      padding: 0 10px;
+      height: 23px;
+      color: #fff;
+      margin-top: 10px;
+      font-size: 10px;
+      background: #1F1F1F;
+      border-radius: 2px;
+      white-space: nowrap;
+      line-height: 23px;
+    }
+
+    #id .dialog {
+      min-width: 300px;
+      display: flex;
+      flex-shrink: 0;
+      flex-direction: column;
+      padding: 27px 20px 20px 20px;
+      border-radius: 4px;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+      background: #fff;
+      height: 200px;
+
+      transform: translate(0, -300px);
+
+      h3 {
+        font-size: 20px;
+        margin-bottom: 16px;
+        white-space: nowrap;
+      }
+
+      .spacebetween {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .spacearound {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .spacecenter {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+  }
+}
+
+.leftmenu {
+
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  background: #fff;
+  width: 388px;
+
+  .menu {
+    border-radius: 2px;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+
+    .link {
+      color: #4A4A4A;
+      line-height: 46px;
+      width: 90px;
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+      align-items: center;
+      text-decoration: none;
+
+      .menubar {
+        height: 14px;
+        width: 4px;
+
+      }
+
+      .menuline {
+        height: 14px;
+        width: 1px;
+        background: #D8D8D8;
+      }
+
+      .active {
+        background: #296FD2;
+      }
+
+      span {
+        .active {
+          color: #296FD2;
+        }
+      }
+    }
+
+  }
+
+  .bar {
+    padding: 12px 8px 0px 8px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    border-radius: 2px;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+
+    .col {
+      text-align: center;
+    }
+  }
+}
+
+.rightmenu {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  width: 108px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  left: 336px;
+  top: 16px;
+  right: 16px;
+  height: 50px;
+  border-radius: 2px;
+  background: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+
+  .label {
+    flex-grow: 0;
+
+    display: flex;
+
+    .labelbar {
+      width: 300px;
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 16px;
+      align-items: center;
+
+      .labeldiv {
+        width: 60px;
+      }
+
+      .labelcontent {
+        line-height: 18px;
+        text-align: center;
+        span {
+          font-size: 12px;
+        }
+
+      }
+    }
+  }
+  .bar {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+
+    ul {
+      display: flex;
+      height: 100%;
+      list-style: none; /* 去掉ul前面的符号 */
+      margin: 0px; /* 与外界元素的距离为0 */
+      padding: 0px; /* 与内部元素的距离为0 */
+      width: auto; /* 宽度根据元素内容调整 */
+      align-items: center;
+    }
+
+    ul li {
+      border-left: solid 1px #E6E6E6;
+      float: left; /* 向左漂移，将竖排变为横排 */
+      width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .search {
+    flex-grow: 0;
+    width: 220px;
+    display: flex;
+    align-items: center;
+  }
+}

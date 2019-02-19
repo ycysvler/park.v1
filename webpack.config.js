@@ -13,7 +13,7 @@ module.exports = {
     context: path.join(__dirname, "app"),
     entry: "./index.js",
     output: {
-        path: path.join(__dirname, "public/vsb"),
+        path: path.join(__dirname, "public"),
         filename: "bundle.js",
         library: "EntryPoint"
     },

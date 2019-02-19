@@ -54,6 +54,7 @@ export class Login extends React.Component {
             alert("密码不能为空");
             return;
         }
+        console.log('???');
         UserActions.login(account, password);
     }
 

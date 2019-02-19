@@ -26,6 +26,24 @@ const UserStore = Reflux.createStore({
 
         let data = {"userName":username,"userPwd":password};
 
+        data.statusCode = 200;
+        data.employeeDto = {
+            "account":"ccc", //账号
+            "place": "运营部",//部门
+            "name": "王力",//姓名
+            "position": "",//职务
+            "mobile": "13811107022",//电话
+            "role":[ //角色
+                {"roleId":"","loginDevice":"pl_pc"}
+            ]
+        };
+
+        sessionStorage.setItem('user',JSON.stringify(data));
+        self.current = data.body;
+        self.trigger("login",data);
+        return;
+
+
         //let url = "http://10.10.212.180:8090" + "/logonserver/login/pl";
         let url = Config.url + "/logonserver/login/pl";
         $.ajax({
